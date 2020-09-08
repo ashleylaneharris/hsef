@@ -8,20 +8,20 @@ Web App for Hoosier Science and Engineering State Fair
 
 **Development Process**
 
-* Pickup a ticket (Move it to In Progress)
-* Create a feature or bug branch
-* Make changes
-* **Create a PR as soon as possible**, mark it as a Work In Progress (WIP) if you need to
-  > * Point PR at `dev` branch, **not master**
-  > * Do not review PR's marked as WIP
-* Address any comments or requests for changes in your PR
-* Merge to `dev` once you have needed approvals
+- Pickup a ticket (Move it to In Progress)
+- Create a feature or bug branch
+- Make changes
+- **Create a PR as soon as possible**, mark it as a Work In Progress (WIP) if you need to
+  > - Point PR at `dev` branch, **not master**
+  > - Do not review PR's marked as WIP
+- Address any comments or requests for changes in your PR
+- Merge to `dev` once you have needed approvals
 
 **Branching pattern:**
 
 Features
 
-``` text
+```text
 master <- dev <- feature_work
 ```
 
@@ -89,8 +89,18 @@ Now the app should be running in a development server. To build and serve the ap
 - ssh into your apache server.
 - verify PHP version >= 5.3
 - install composer for php
+- install nodejs for your distibution
+  - Get the lts release here: https://nodejs.org/download/release/v12.18.3/
+  - Unzip it and copy it over to your server
+  - add the bin to the path
+  - symlink npm and npx:
+    ```bash
+     ln -s ../lib/node_modules/npm/bin/npm-cli.js npm
+     ln -s ../lib/node_modules/npm/bin/npx-cli.js npx
+    ```
 - navigate into `htdocs/` and clone project with `git clone https://github.com/djpeach/hsef.git .`
 - navigate into api and run `composer install`
 - navigate into client and run `npm install`
 - in client also run `npm run build`
+- configure Apache: https://stackoverflow.com/questions/29380208/php-slim-framework-the-requested-url-was-not-found-on-this-server
 - check your corsair link to verify deployment worked
