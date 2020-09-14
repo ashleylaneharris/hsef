@@ -19,10 +19,19 @@ class Router implements iRouter {
     $this->POST[$route] = $controller;
   }
 
+  private function normalizeRoute($rawRoute) {
+    $route = str_replace('/hsef/api', '', $rawRoute);
+    if (strlen($route) > 1 && substr($route, -1) === '/') {
+      $route = substr($route, 0, -1);
+    }
+    return $route;
+  }
+
   public function handle($req, $res) {
     $method = strtoupper($req->requestMethod);
     $map = $this->{$method};
-    $handler = $map[$req->requestUri];
+    $route = $this->normalizeRoute($req->requestUri);
+    $handler = $map[$route];
     $handler($req, $res);
   }
 }
